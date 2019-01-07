@@ -1,0 +1,44 @@
+<div fxLayoutAlign="center center" class="top-div-border">
+  <h1 class="m-b-10 m-t-10" > Flight Search App
+  </h1>
+  <mat-divider></mat-divider>
+</div>
+    <div fxLayout="row"  fxLayout.xs="row"  >
+    <div fxFlex="22"  fxFlex.xs="22" fxLayoutAlign="center start" class="right-div-border">
+
+      <app-search-flight></app-search-flight>
+
+
+    </div>
+    <div fxFlex="70" fxLayout="column"  fxLayout.xs="column">
+      <div *ngIf="formData">
+        <div fxLayout="row"  fxLayout.xs="row" fxLayoutAlign="space-around start" >
+          <div fxLayout="column"  fxLayout.xs="column" >
+            <h3>{{formData.originCity}} to {{formData.destinationCity}}</h3>
+            <div fxLayout="row"  fxLayout.xs="row"  >
+            <div class="m-r-10">{{oneWayLen}} Flights Found</div>
+              <div>{{depDate}}</div>
+            </div>
+          </div>
+          <div fxLayout="column"  fxLayout.xs="column" *ngIf="formData.returnDate !== null" >
+            <h3 >{{formData.destinationCity}} to {{formData.originCity}}</h3>
+            <div fxLayout="row"  fxLayout.xs="row"  >
+              <div class="m-r-10">{{returnLen}} Flights Found</div>
+              <div>{{returnDate}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="flightData">
+        <div fxLayout="row">
+          <app-oneway-flight  [data] = "flightData" class="p-r-10"></app-oneway-flight>
+
+          <app-return-flight [data] = "flightData" ></app-return-flight>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+

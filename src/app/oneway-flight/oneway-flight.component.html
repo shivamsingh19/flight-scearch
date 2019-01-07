@@ -1,0 +1,110 @@
+<div *ngFor="let data of finalFlightData ">
+  <mat-card *ngIf="data.isdirect === true" class="" [ngClass]="{
+    'mat-one':oneWayFormData.returnDate === null,
+    'mat-return':oneWayFormData.returnDate !== null,
+    'm-t-10': oneWayFormData.returnDate === null || oneWayFormData.returnDate !== null,
+         'm-l-10': oneWayFormData.returnDate === null || oneWayFormData.returnDate !== null
+  }">
+    <mat-card-content >
+      <div fxLayout="row"  fxLayout.xs="row" >
+        <mat-icon fxFlex="5%">flight</mat-icon>
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.name}}</h3>
+          <h4>{{data.flightNo}}</h4>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.departureTime}}</h3>
+          <h4>{{data.origin}}</h4>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.arrivalTime}}</h3>
+          <h4>{{data.destination}}</h4>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.totalTime}}</h3>
+          <h4>Total Duration</h4>
+        </div>
+
+        <div fxLayout="row"  fxLayout.xs="row" fxLayoutAlign="center center">
+          <i class="fas fa-rupee-sign m-r-10"></i>
+        <h3 class="price">{{noOfPassenger * data.price}}</h3>
+        <button mat-button class="mat-book">Book</button>
+        </div>
+
+
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card *ngIf="data.isdirect === false" class="m-t-10" [ngClass]="{
+    'mat-one':oneWayFormData.returnDate === null,
+    'mat-return':oneWayFormData.returnDate !== null,
+    'm-t-10': oneWayFormData.returnDate === null || oneWayFormData.returnDate !== null,
+      'm-l-10': oneWayFormData.returnDate === null || oneWayFormData.returnDate !== null
+  }">
+    <mat-card-content>
+      <div fxLayout="row"  fxLayout.xs="row" >
+        <mat-icon fxFlex="5%">transfer_within_a_station</mat-icon>
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>Multiple</h3>
+          <div *ngIf="data.showHide === false || !data.showHide">
+            <button mat-button color="primary" style="padding-right: 50px;padding-left: 0px;" (click)="show(data)">Show Details</button>
+          </div>
+          <div  *ngIf="data.showHide === true">
+            <button mat-button color="primary" style="padding-right: 50px;padding-left: 0px;" (click)="hide(data)">Hide Details</button>
+          </div>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.departureTime}}</h3>
+          <h4>{{data.origin}}</h4>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.arrivalTime}}</h3>
+          <h4>{{data.destination}}</h4>
+        </div>
+
+        <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+          <h3>{{data.totalTime}}</h3>
+          <h4>Total Duration</h4>
+        </div>
+
+        <div fxLayout="row"  fxLayout.xs="row" fxLayoutAlign="center center">
+          <i class="fas fa-rupee-sign m-r-10"></i>
+          <h3 class="price">{{noOfPassenger * data.price}}</h3>
+          <button mat-button class="mat-book">Book</button>
+        </div>
+
+
+      </div>
+    </mat-card-content>
+    <div *ngIf="data.showHide === true" style="background-color: lightgrey">
+      <mat-card-content *ngFor="let flight of data.flights ">
+        <div fxLayout="row"  fxLayout.xs="row" >
+          <mat-icon fxFlex="5%">flight</mat-icon>
+          <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+            <h3>{{flight.name}}</h3>
+            <h4>{{flight.flightNo}}</h4>
+          </div>
+
+          <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+            <h3>{{flight.departureTime}}</h3>
+            <h4>{{flight.origin}}</h4>
+          </div>
+
+          <div fxLayout="column"  fxLayout.xs="column" fxFlex="20%" >
+            <h3>{{flight.arrivalTime}}</h3>
+            <h4>{{flight.destination}}</h4>
+          </div>
+        </div>
+
+      </mat-card-content>
+    </div>
+
+  </mat-card>
+</div>
